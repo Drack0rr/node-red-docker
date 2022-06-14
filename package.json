@@ -16,7 +16,8 @@
         }
     ],
     "dependencies": {
-        "node-red": "2.2.2"
+        "node-red": "2.2.2",
+        "node-red-contrib-google-cloud": "^0.0.26"
     },
     "engines": {
         "node": ">=12"
