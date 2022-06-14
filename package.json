@@ -1,0 +1,24 @@
+{
+    "name": "node-red-docker",
+    "version": "1.0.0",
+    "description": "Low-code programming for event-driven applications",
+    "homepage": "http://nodered.org",
+    "license": "Apache-2.0",
+    "private": true,
+    "scripts": {
+        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+        "debug": "node --inspect=0.0.0.0:9229 $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+        "debug_brk": "node --inspect=0.0.0.0:9229 --inspect-brk $NODE_OPTIONS node_modules/node-red/red.js $FLOWS"
+    },
+    "contributor": [
+        {
+            "name": "Axel ROTTHIER"
+        }
+    ],
+    "dependencies": {
+        "node-red": "2.2.2"
+    },
+    "engines": {
+        "node": ">=12"
+    }
+}
