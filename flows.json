@@ -1,19 +1,172 @@
 [
     {
-        "id": "f6f2187d.f17ca8",
+        "id": "80659074bf2952c6",
         "type": "tab",
         "label": "Flow 1",
         "disabled": false,
-        "info": ""
+        "info": "",
+        "env": []
     },
     {
-        "id": "3cc11d24.ff01a2",
-        "type": "comment",
-        "z": "f6f2187d.f17ca8",
-        "name": "Test",
-        "info": "Test2",
-        "x": 350,
-        "y": 80,
+        "id": "ecfa507f96b5adf6",
+        "type": "google-cloud-credentials",
+        "name": "transport"
+    },
+    {
+        "id": "70a456866fd42d31",
+        "type": "google-cloud-credentials",
+        "name": "campus-bigquery-access"
+    },
+    {
+        "id": "8a3891d0e3364ea4",
+        "type": "debug",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "82c9db154a812d16",
+        "type": "http in",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "url": "/transport",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "d6e3190333398f8e",
+                "8a3891d0e3364ea4",
+                "ac236c959d980dd1",
+                "dc16674ca1563dc1"
+            ]
+        ]
+    },
+    {
+        "id": "d6e3190333398f8e",
+        "type": "template",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} !",
+        "output": "str",
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "3e3b206d4222b15c"
+            ]
+        ]
+    },
+    {
+        "id": "3e3b206d4222b15c",
+        "type": "http response",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "79bdaa8a9b67317e",
+        "type": "google-cloud-log",
+        "z": "80659074bf2952c6",
+        "account": "ecfa507f96b5adf6",
+        "keyFilename": "",
+        "projectId": "",
+        "logName": "transport",
+        "name": "",
+        "x": 630,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ac236c959d980dd1",
+        "type": "function",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "func": "msg.payload = `User ${msg.req.query.clientid} at gate ${msg.req.query.gateid} @${Date.now()}`;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "79bdaa8a9b67317e"
+            ]
+        ]
+    },
+    {
+        "id": "dc16674ca1563dc1",
+        "type": "function",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "func": "msg.payload = {\n    clientId: +msg.req.query.clientId,\n    gateId:  +msg.req.query.gateId,\n    timestamp: Date.now()\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 360,
+        "wires": [
+            [
+                "d9ea8a849c90be52",
+                "28308f77ff90aaef"
+            ]
+        ]
+    },
+    {
+        "id": "d9ea8a849c90be52",
+        "type": "google-cloud-bigquery-insert",
+        "z": "80659074bf2952c6",
+        "account": "70a456866fd42d31",
+        "keyFilename": "",
+        "projectId": "",
+        "tableId": "traffic",
+        "datasetId": "transport",
+        "name": "",
+        "x": 540,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28308f77ff90aaef",
+        "type": "debug",
+        "z": "80659074bf2952c6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 480,
         "wires": []
     }
 ]

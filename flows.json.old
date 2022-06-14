@@ -1,0 +1,19 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3cc11d24.ff01a2",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Test",
+        "info": "Test2",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    }
+]
