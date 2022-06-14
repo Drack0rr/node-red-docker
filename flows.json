@@ -121,7 +121,7 @@
         "type": "function",
         "z": "80659074bf2952c6",
         "name": "",
-        "func": "msg.payload = {\n    clientId: +msg.req.query.clientId,\n    gateId:  +msg.req.query.gateId,\n    timestamp: Date.now()\n};\nreturn msg;",
+        "func": "msg.payload = {\n    clientId: +msg.req.query.clientId,\n    gateId:  +msg.req.query.gateId,\n    timestamp: Date.now()\n};\nreturn msg;",       
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
